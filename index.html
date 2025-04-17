@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Self-Declaration – Taqseem & Market Value</title>
+  <style>
+    body {
+      font-family: 'Noto Serif', serif;
+      background: #fefefe;
+      color: #222;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 2rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      margin-bottom: 1.5rem;
+      padding: 0.8rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .signature {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+
+    .signature div {
+      width: 45%;
+    }
+
+    .note {
+      font-style: italic;
+      color: #555;
+      margin-top: 2rem;
+    }
+
+    button {
+      background: #333;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      background: #000;
+    }
+
+    @media print {
+      button { display: none; }
+      body {
+        background: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>स्वघोषणा पत्र (Self-Declaration Statement)</h1>
+
+    <label for="hindiDeclaration"><strong>हिंदी में घोषणा:</strong></label>
+    <textarea id="hindiDeclaration">मैं, विपुल आनंद, निवासी [पता], यह स्वघोषणा करता हूँ कि मैं खेवट संख्या [संख्या] में स्थित कृषि भूमि का सह-स्वामी हूँ। मैं वर्तमान में उक्त भूमि के हिस्से का तक़सीम (विभाजन) प्रक्रिया में हूँ ताकि स्वतंत्र खसरा और म्युटेशन प्राप्त हो सके। मैंने ₹60–65 लाख प्रति एकड़ की दर से संभावित खरीदारों की रुचि प्राप्त की है। मैं यह घोषणा करता हूँ कि मैं किसी भी दबाव, आर्थिक संकट, या अनैच्छिक स्थिति में नहीं हूँ। यह निर्णय मेरी स्वतंत्र इच्छा और पूर्ण जानकारी के साथ लिया गया है। यह घोषणा भविष्य में किसी भी प्रकार की गलत व्याख्या या विवाद से बचाव हेतु की जा रही है।</textarea>
+
+    <label for="englishDeclaration"><strong>Declaration in English:</strong></label>
+    <textarea id="englishDeclaration">I, Vipul Anand, resident of [address], do hereby solemnly declare that I am a co-owner of agricultural land under Khewat No. [number], located in [village], Tehsil [name], District Kurukshetra, Haryana. I am currently undergoing the process of partition (taqseem) of my land share in order to obtain an independent title and mutation. I have received interest from potential buyers offering ₹60–65 lakh per acre. I affirm that I am under no distress, coercion, or financial emergency and am acting on my own free will. This declaration is made to protect my legal interests and prevent any future misrepresentation or dispute regarding my intent or the fair market value of the land.</textarea>
+
+    <label for="fileNumber"><strong>तक़सीम फाइल नंबर / Partition File Number:</strong></label>
+    <input type="text" id="fileNumber">
+
+    <div class="signature">
+      <div>
+        स्थान (Place):<br>
+        <input type="text" id="place">
+      </div>
+      <div style="text-align: right;">
+        दिनांक (Date):<br>
+        <input type="text" id="date"><br><br>
+        हस्ताक्षर (Signature):<br>
+        <strong>Vipul Anand</strong>
+      </div>
+    </div>
+
+    <button onclick="print()">Print / Save as PDF</button>
+
+    <p class="note">Note: This document is for personal legal use. All content is saved only in your browser (localStorage).</p>
+  </div>
+
+  <script>
+    const fields = ["hindiDeclaration", "englishDeclaration", "place", "date", "fileNumber"];
+    fields.forEach(id => {
+      const saved = localStorage.getItem(id);
+      if (saved) document.getElementById(id).value = saved;
+      document.getElementById(id).addEventListener("input", e => {
+        localStorage.setItem(id, e.target.value);
+      });
+    });
+  </script>
+</body>
+</html>
